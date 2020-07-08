@@ -1,0 +1,57 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: gateway
+  redis:
+    host: ${SPRING_REDIS_HOST:122.51.158.110}
+    database: 4
+    password: ${SPRING_REDIS_PASSWORD:LyzavGmsILOblYbN78DiWGzOhRPgaVtG}
+    port: ${SPRING_REDIS_PORT:11954}
+  cloud:
+    consul:
+      host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        acl-token: bef68e54-6195-2c65-227d-a840f9f745ee
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+#              - http://www.0moe.cn
+#              - https://www.0moe.cn
+#              - http://localhost:4200
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: '*'
+            allowCredentials: true
+      routes:
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+        - id: lsmv
+          uri: lb://lsmv
+          predicates:
+            - Path=/lsmv/**
+        - id: social
+          uri: lb://social
+          predicates:
+            - Path=/social/**
+        - id: iam
+          uri: lb://iam
+          predicates:
+            - Path=/iam/**
+#          filters:
+#            - StripPrefix=1
+dubbo:
+  registry:
+    address: consul://${spring.cloud.consul.host}:${spring.cloud.consul.port}?token=${spring.cloud.consul.discovery.acl-token}
+  consumer:
+    check: false
