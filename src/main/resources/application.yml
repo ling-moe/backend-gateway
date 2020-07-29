@@ -1,5 +1,5 @@
 server:
-  port: 8020
+  port: 8030
 spring:
   application:
     name: gateway
@@ -9,12 +9,6 @@ spring:
     password: ${SPRING_REDIS_PASSWORD:LyzavGmsILOblYbN78DiWGzOhRPgaVtG}
     port: ${SPRING_REDIS_PORT:11954}
   cloud:
-    consul:
-      host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
-      port: 8500
-      discovery:
-        service-name: ${spring.application.name}
-        acl-token: bef68e54-6195-2c65-227d-a840f9f745ee
     gateway:
       globalcors:
         corsConfigurations:
@@ -52,6 +46,6 @@ spring:
 #            - StripPrefix=1
 dubbo:
   registry:
-    address: consul://${spring.cloud.consul.host}:${spring.cloud.consul.port}?token=${spring.cloud.consul.discovery.acl-token}
+    address: consul://${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}:${SPRING_CLOUD_CONSUL_HOST:80}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
   consumer:
     check: false

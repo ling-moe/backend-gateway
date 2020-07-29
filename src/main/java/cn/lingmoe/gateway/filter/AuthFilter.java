@@ -12,7 +12,7 @@ import cn.lingmoe.core.exception.security.ForbiddenException;
 import cn.lingmoe.core.exception.security.UnauthorizedException;
 import cn.lingmoe.gateway.constants.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -34,7 +34,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthFilter implements GlobalFilter, Ordered {
 
-    @Reference
+    @DubboReference
     private AuthClient authClient;
     @Autowired
     private ObjectMapper objectMapper;
