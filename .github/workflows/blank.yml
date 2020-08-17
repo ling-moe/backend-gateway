@@ -30,15 +30,10 @@ jobs:
         server_id: rdc-snapshots
         # Additional arguments to pass to the Maven command
         maven_args:  -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
-    - name: docker-publish
-      uses: samuelmeuli/action-maven-publish@v1.4.0
-      with:
-        # Username (not email!) for your Nexus repository manager account
-        nexus_username: 571863559
-        # Password for your Nexus account
-        nexus_password: Asd.54188+
-        # Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
-        server_id: docker-tencent
-        # Additional arguments to pass to the Maven command
-        maven_goals_phases: mvn clean package docker:build
-        maven_args: -DpushImage -Dmaven.test.skip=true
+    - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: 571863559
+          password: Asd.54188+
+          repository: ccr.ccs.tencentyun.com/0moe
+          tag_with_ref: true

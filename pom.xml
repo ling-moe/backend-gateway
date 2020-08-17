@@ -81,7 +81,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>gateway</imageName>
+                    <imageName>backend-gateway</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
@@ -89,9 +89,6 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
-                    <serverId>docker-tencent</serverId>
-                    <registryUrl>ccr.ccs.tencentyun.com</registryUrl>
-                    <imageName>ccr.ccs.tencentyun.com/0moe/0moe-backend-gateway</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                         <imageTag>latest</imageTag>
