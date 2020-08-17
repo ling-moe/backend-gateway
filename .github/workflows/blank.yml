@@ -29,7 +29,8 @@ jobs:
         # Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
         server_id: rdc-snapshots
         # Additional arguments to pass to the Maven command
-        maven_args:  -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
+        maven_args: -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
+        maven_goals_phases: clean deploy package docker:build
     - name: Push to Docker Hub
       uses: docker/build-push-action@v1
       with:
