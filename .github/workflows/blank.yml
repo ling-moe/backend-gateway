@@ -37,5 +37,5 @@ jobs:
         name: 0moe/backend-gateway
         username: 571863559
         password: Asd.54188+
-        repository: ccr.ccs.tencentyun.com
+        registry: ccr.ccs.tencentyun.com
         tags: "latest"
