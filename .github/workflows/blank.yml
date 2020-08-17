@@ -19,7 +19,18 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: action-maven-publish
+    - name: depend-publish
+      uses: samuelmeuli/action-maven-publish@v1.4.0
+      with:
+        # Username (not email!) for your Nexus repository manager account
+        nexus_username: EIyoFD
+        # Password for your Nexus account
+        nexus_password: DQvy0Ieh5G
+        # Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
+        server_id: rdc-snapshots
+        # Additional arguments to pass to the Maven command
+        maven_args:  -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
+    - name: docker-publish
       uses: samuelmeuli/action-maven-publish@v1.4.0
       with:
         # Username (not email!) for your Nexus repository manager account
