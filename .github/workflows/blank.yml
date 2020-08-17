@@ -31,9 +31,9 @@ jobs:
         # Additional arguments to pass to the Maven command
         maven_args:  -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
     - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
-        with:
-          username: 571863559
-          password: Asd.54188+
-          repository: ccr.ccs.tencentyun.com/0moe
-          tag_with_ref: true
+      uses: docker/build-push-action@v1
+      with:
+        username: 571863559
+        password: Asd.54188+
+        repository: ccr.ccs.tencentyun.com/0moe
+        tag_with_ref: true
