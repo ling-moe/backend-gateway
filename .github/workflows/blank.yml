@@ -19,7 +19,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-#    - name: Publish Dependency
+#    - name: Publish dependency
 #      uses: samuelmeuli/action-maven-publish@v1.4.0
 #      with:
 #        # Username (not email!) for your Nexus repository manager account
@@ -30,16 +30,12 @@ jobs:
 #        server_id: rdc-snapshots
 #        # Additional arguments to pass to the Maven command
 #        maven_args: -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
-#        maven_goals_phases: clean deploy
-    - name: Publish Docker
-      uses: samuelmeuli/action-maven-publish@v1.4.0
+#        maven_goals_phases: clean deploy package docker:build
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
       with:
-        # Username (not email!) for your Nexus repository manager account
-        nexus_username: 571863559
-        # Password for your Nexus account
-        nexus_password: Asd.54188+
-        # Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
-        server_id: docker-tencent
-        # Additional arguments to pass to the Maven command
-        maven_args: -Dmaven.test.skip=true -DpushImage
-        maven_goals_phases: package docker:build
+        name: backend-gateway
+        username: 571863559
+        password: Asd.54188+
+        repository: ccr.ccs.tencentyun.com/0moe
+        tag_with_ref: true
