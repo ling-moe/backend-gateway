@@ -14,9 +14,9 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOrigins: '*'
-#              - http://www.0moe.cn
-#              - https://www.0moe.cn
-#              - http://localhost:4200
+              - http://www.0moe.cn
+              - https://www.0moe.cn
+              - http://localhost:4200
             allowedMethods:
               - GET
               - POST
@@ -27,9 +27,13 @@ spring:
             allowCredentials: true
       routes:
         - id: auth
-          uri: lb://auth
+          uri: http://auth.dev.svc.cluster.local
           predicates:
             - Path=/auth/**
+        - id: iam
+          uri: http://iam.dev.svc.cluster.local
+          predicates:
+            - Path=/iam/**
         - id: lsmv
           uri: lb://lsmv
           predicates:
@@ -38,12 +42,15 @@ spring:
           uri: lb://social
           predicates:
             - Path=/social/**
-        - id: iam
-          uri: lb://iam
+
+        - id: auth-dawn
+          uri: lb://auth-dawn
           predicates:
-            - Path=/iam/**
-#          filters:
-#            - StripPrefix=1
+            - Path=/auth-dawn/**
+        - id: iam-dawn
+          uri: lb://iam-dawn
+          predicates:
+            - Path=/iam-dawn/**
 dubbo:
   registry:
     address: consul://${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}:${SPRING_CLOUD_CONSUL_HOST:80}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
