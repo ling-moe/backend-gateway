@@ -89,6 +89,9 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <serverId>docker-tencent</serverId>
+                    <registryUrl>ccr.ccs.tencentyun.com</registryUrl>
+                    <imageName>ccr.ccs.tencentyun.com/0moe/backend-gateway</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                         <imageTag>latest</imageTag>
