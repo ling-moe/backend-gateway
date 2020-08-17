@@ -34,8 +34,8 @@ jobs:
     - name: Publish Docker
       uses: elgohr/Publish-Docker-Github-Action@2.19
       with:
-        name: backend-gateway
+        name: 0moe/backend-gateway
         username: 571863559
         password: Asd.54188+
-        repository: ccr.ccs.tencentyun.com/0moe
+        repository: ccr.ccs.tencentyun.com
         tags: "latest"
