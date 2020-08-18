@@ -53,6 +53,6 @@ spring:
             - Path=/iam-dawn/**
 dubbo:
   registry:
-    address: consul://${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}:${SPRING_CLOUD_CONSUL_HOST:80}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
+    address: consul://${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}:${SPRING_CLOUD_CONSUL_PORT:80}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
   consumer:
     check: false
