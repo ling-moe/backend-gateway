@@ -14,9 +14,9 @@ spring:
         corsConfigurations:
           '[/**]':
             allowedOrigins: '*'
-              - http://www.0moe.cn
-              - https://www.0moe.cn
-              - http://localhost:4200
+#              - http://www.0moe.cn
+#              - https://www.0moe.cn
+#              - http://localhost:4200
             allowedMethods:
               - GET
               - POST
