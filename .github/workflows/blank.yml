@@ -36,6 +36,7 @@ jobs:
         maven_args: -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
         maven_goals_phases: clean deploy package docker:build
   image:
+    needs: dependency
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
