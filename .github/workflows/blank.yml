@@ -11,14 +11,18 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  dependency:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
     - name: Publish dependency
       uses: samuelmeuli/action-maven-publish@v1.4.0
       with:
@@ -31,6 +35,11 @@ jobs:
         # Additional arguments to pass to the Maven command
         maven_args: -DaltDeploymentRepository=rdc-snapshots::default::https://repo.rdc.aliyun.com/repository/132936-snapshot-gfKqCh/ -Dmaven.test.skip=true
         maven_goals_phases: clean deploy package docker:build
+  image:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
     - name: Push Docker Image
       uses: julioarruda/pushimagetoregistry@v1
       with:
