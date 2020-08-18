@@ -27,9 +27,9 @@ jobs:
       uses: samuelmeuli/action-maven-publish@v1.4.0
       with:
         # Username (not email!) for your Nexus repository manager account
-        nexus_username: ${{ secrets.MAVEN_REPOSITORY_USERNAME }}
+        nexus_username: EIyoFD
         # Password for your Nexus account
-        nexus_password: ${{ secrets.MAVEN_REPOSITORY_PASSWORD }}
+        nexus_password: DQvy0Ieh5G
         # Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
         server_id: rdc-snapshots
         # Additional arguments to pass to the Maven command
@@ -38,7 +38,7 @@ jobs:
     - name: Push Docker Image
       uses: julioarruda/pushimagetoregistry@v1
       with:
-        acr-tokenname: ${{ secrets.DOCKER_REPOSITORY_USERNAME }}
-        acr-token: ${{ secrets.DOCKER_REPOSITORY_PASSWORD }}
+        acr-tokenname: 571863559
+        acr-token: Asd.54188+
         acr-account: ccr.ccs.tencentyun.com
         acr-imagename: ccr.ccs.tencentyun.com/0moe/backend-gateway:latest
