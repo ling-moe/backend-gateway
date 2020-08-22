@@ -37,9 +37,7 @@
         <dependency>
             <groupId>com.ecwid.consul</groupId>
             <artifactId>consul-api</artifactId>
-            <version>1.4.5</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -82,6 +80,8 @@
                 <version>1.0.0</version>
                 <configuration>
                     <imageName>ccr.ccs.tencentyun.com/0moe/backend-gateway</imageName>
+                    <serverId>docker-tencent</serverId>
+                    <registryUrl>ccr.ccs.tencentyun.com</registryUrl>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>

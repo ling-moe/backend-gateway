@@ -27,11 +27,11 @@ spring:
             allowCredentials: true
       routes:
         - id: auth
-          uri: http://auth.dev.svc.cluster.local
+          uri: http://auth.dev.svc.cluster.local:8010
           predicates:
             - Path=/auth/**
         - id: iam
-          uri: http://iam.dev.svc.cluster.local
+          uri: http://iam.dev.svc.cluster.local:8020
           predicates:
             - Path=/iam/**
         - id: lsmv
