@@ -48,7 +48,7 @@ spring:
           predicates:
             - Path=/auth-dawn/**
         - id: iam-dawn
-          uri: lb://iam-dawn
+          uri: http://10.8.0.6:8021
           predicates:
             - Path=/iam-dawn/**
 dubbo:
