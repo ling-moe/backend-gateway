@@ -24,6 +24,7 @@ import reactor.core.publisher.Mono;
  */
 @Component
 public class RouterCategoryFilter implements GlobalFilter, Ordered {
+    public static final String PATH = "path";
     @Autowired
     private RedisHelper redisHelper;
     private AntPathMatcher matcher = new AntPathMatcher();
@@ -37,7 +38,7 @@ public class RouterCategoryFilter implements GlobalFilter, Ordered {
         // 检查是否是公开权限，是则添加相应头文件
         Set<JSONObject> publicRouterSet = redisHelper.setMembers(AuthConstants.getPublicRouterKey(serviceName, request.getMethodValue()),
                 JSONObject.class);
-        String publicRouter = publicRouterSet.stream().map(obj -> obj.getByPath("path", String.class))
+        String publicRouter = publicRouterSet.stream().map(obj -> obj.getByPath(PATH, String.class))
                 .filter(pattern-> matcher.match(pattern, path))
                 .findFirst().orElse(null);
         if (StrUtil.isNotBlank(publicRouter)){
@@ -46,7 +47,7 @@ public class RouterCategoryFilter implements GlobalFilter, Ordered {
         // 检查是否是登录即用权限，是则添加相应头文件
         Set<JSONObject> loginRouterSet = redisHelper.setMembers(AuthConstants.getLoginRouterKey(serviceName, request.getMethodValue()),
                 JSONObject.class);
-        String loginRouter = loginRouterSet.stream().map(obj -> obj.getByPath("path", String.class))
+        String loginRouter = loginRouterSet.stream().map(obj -> obj.getByPath(PATH, String.class))
                 .filter(pattern-> matcher.match(pattern, path))
                 .findFirst().orElse(null);
         if (StrUtil.isNotBlank(loginRouter)){
