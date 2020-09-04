@@ -10,10 +10,10 @@ spring:
     port: ${SPRING_REDIS_PORT:11954}
   cloud:
     consul:
-      host: consul.resource.0moe.cn
-      port: 80
+      host: ${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}
+      port: ${SPRING_CLOUD_CONSUL_PORT:80}
       discovery:
-        acl-token: bef68e54-6195-2c65-227d-a840f9f745ee
+        acl-token: ${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
     gateway:
       globalcors:
         corsConfigurations:
@@ -62,6 +62,6 @@ spring:
         enabled: false
 dubbo:
   registry:
-    address: consul://${SPRING_CLOUD_CONSUL_HOST:consul.resource.0moe.cn}:${SPRING_CLOUD_CONSUL_PORT:80}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN:bef68e54-6195-2c65-227d-a840f9f745ee}
+    address: consul://${SPRING_CLOUD_CONSUL_HOST}:${SPRING_CLOUD_CONSUL_PORT}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN}
   consumer:
     check: false
