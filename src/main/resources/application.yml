@@ -47,7 +47,6 @@ spring:
           uri: lb://social
           predicates:
             - Path=/social/**
-
         - id: auth-dawn
           uri: lb://auth-dawn
           predicates:
@@ -56,7 +55,6 @@ spring:
           uri: lb://iam-dawn
           predicates:
             - Path=/iam-dawn/**
-
     loadbalancer:
       ribbon:
         enabled: false
