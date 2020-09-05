@@ -52,9 +52,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
         } else if (StrUtil.isBlank(authorization)) {
             // 401错误，未登录
             throw new UnauthorizedException();
-        } else if (StrUtil.equals(AuthConstants.NAME, request.getHeaders().getFirst(Constants.SERVICE_NAME))) {
-            // 如果是auth服务，则仅进行鉴权，因为auth用的是redistokenstor，不需要jwt转换
-            jwt = authClient.auth(authorization, request.getMethodValue(), request.getPath().value());
         } else {
             jwt = authClient.authAndConvert(authorization, request.getMethodValue(), request.getPath().value());
         }
