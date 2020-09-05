@@ -61,6 +61,6 @@ spring:
 #        enabled: false
 dubbo:
   registry:
-    address: consul://${SPRING_CLOUD_CONSUL_HOST}:${SPRING_CLOUD_CONSUL_PORT}?token=${SPRING_CLOUD_CONSUL_ACL_TOKEN}
+    address: consul://${spring.cloud.consul.host}:${spring.cloud.consul.port}?token=${spring.cloud.consul.discovery.acl-token}
   consumer:
     check: false

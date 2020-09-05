@@ -58,12 +58,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
         } else {
             jwt = authClient.authAndConvert(authorization, request.getMethodValue(), request.getPath().value());
         }
-        /*
-        else if (StrUtil.equals(request.getHeaders().getFirst(Constants.LOGIN_ROUTER), Constants.HEADER_TRUE)){
-            // 如果是登录即用权限则直接放行到各个服务，不进行jwt编码转换
-            jwt = authorization;
-        }
-         */
         if (StrUtil.equals(jwt, AuthConstants.ErrorCode.NONE_LOGIN)) {
             // 401错误，未登录
             throw new UnauthorizedException();
